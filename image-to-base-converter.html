@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image <=> Base64 & PDF to Image Converter - PicsArtHub.app</title>
+    <meta name="description" content="Free online tool to convert images (PNG, JPG, GIF, WebP) to Base64 strings and vice-versa. Also supports converting Base64 encoded PDF files to an image of the first page.">
+    <link rel="canonical" href="https://image-to-base64-converter-eight.vercel.app/image-to-base-converter.html">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap">
+    
+    <!-- PDF.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>
+        if (typeof pdfjsLib !== 'undefined') {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js`;
+        }
+    </script>
+
+    <!-- Schema.org JSON-LD for SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Image <=> Base64 & PDF to Image Converter",
+      "description": "A free online utility to perform bi-directional conversion between images (PNG, JPG, GIF, WebP) and Base64 encoded strings. Additionally, it can convert the first page of a Base64 encoded PDF document into a PNG image.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "url": "https://image-to-base64-converter-eight.vercel.app/image-to-base-converter.html",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "keywords": "image to base64, base64 to image, convert image to base64, convert base64 to image, image to base64 online, base64 to image online, image to base64 converter, base64 to image converter, encode image to base64, decode base64 to image, base64 string to image, base64 pdf to image, png to base64",
+      "browserRequirements": "Requires JavaScript and a modern web browser."
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-accent: #D402BF;
+            --secondary-accent: #c64ad8;
+            --tertiary-accent: #973aa8;
+            --text-dark: #333;
+            --text-light: #fff;
+            --bg-light: #f8f9fa;
+            --bg-medium: #e9ecef;
+            --bg-dark: #343a40; 
+            --border-light: #e0e0e0;
+            --font-heading: 'Roboto', Arial, sans-serif;
+            --font-body: 'Open Sans', Verdana, sans-serif;
+            --shadow-soft: 0 4px 12px rgba(0,0,0,0.08);
+            --success-green: #28a745; /* Added for success messages */
+            --error-red: #dc3545; /* Added for error messages */
+        }
+
+        body {
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            font-size: 16px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        header {
+            background-color: var(--primary-accent);
+            color: var(--text-light);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-soft);
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0; padding-bottom: 0;
+        }
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
+        nav ul li { margin-left: 25px; }
+        nav ul li a {
+            font-family: var(--font-heading); color: var(--text-light); text-decoration: none;
+            font-weight: 700; padding: 10px 15px; border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        nav ul li a:hover, nav ul li a.active { background-color: rgba(255,255,255,0.2); }
+        .menu-toggle { display: none; font-size: 1.8em; color: var(--text-light); background: none; border: none; cursor: pointer; }
+
+        /* Page Specific Styles for Converter */
+        .page-title-bar { /* Similar to page-header from about.html */
+            background-color: var(--bg-medium);
+            padding: 30px 20px; /* Slightly less padding */
+            text-align: center;
+            border-bottom: 3px solid var(--secondary-accent);
+            margin-bottom: 30px;
+        }
+        .page-title-bar h1 {
+            font-family: var(--font-heading);
+            font-size: 2.2em;
+            color: var(--primary-accent);
+            margin: 0;
+        }
+
+        .tool-section-wrapper { /* To wrap the two converter sections */
+             display: flex;
+             flex-direction: column;
+             gap: 30px; /* Space between converter sections */
+        }
+        
+        .content-section { /* Reusing from previous example, good for tool sections */
+            background-color: #fff; padding: 25px; margin-bottom: 0; /* Removed bottom margin as wrapper handles gap */
+            border-radius: 8px; box-shadow: var(--shadow-soft);
+        }
+        .content-section h2 {
+            font-family: var(--font-heading); color: var(--primary-accent); font-size: 1.7em;
+            margin-top: 0; margin-bottom: 20px;
+        }
+         .content-section p {
+             font-family: var(--font-body); margin-bottom: 1em;
+        }
+        
+        .converter-tool-section textarea {
+            width: 100%; min-height: 120px; margin-top: 10px; margin-bottom: 15px;
+            padding: 10px; border: 1px solid var(--border-light); border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace; font-size: 0.9em;
+            box-sizing: border-box; resize: vertical;
+        }
+        .converter-tool-section input[type="file"] {
+            display: block; margin-bottom: 15px; font-family: var(--font-body);
+            padding: 8px; border: 1px solid var(--border-light); border-radius: 4px;
+        }
+        .converter-tool-section button {
+            background-color: var(--secondary-accent); color: var(--text-light); border: none;
+            padding: 12px 20px; border-radius: 4px; cursor: pointer;
+            font-family: var(--font-heading); font-weight: bold; font-size: 1em;
+            margin-top: 5px; margin-right: 10px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+        .converter-tool-section button:hover { background-color: var(--primary-accent); transform: translateY(-1px); }
+        .converter-tool-section button:active { transform: translateY(0px); }
+
+        .preview-area {
+            margin-top: 15px; margin-bottom: 15px; padding: 10px;
+            border: 1px dashed var(--border-light); border-radius: 4px;
+            min-height: 50px; display: flex; flex-direction: column; align-items: flex-start;
+        }
+        .preview-area img {
+            max-width: 100%; max-height: 300px; border: 1px solid var(--border-light);
+            padding: 5px; background-color: #fff; border-radius: 4px; margin-bottom: 10px;
+        }
+        .preview-area a.download-btn {
+            display: inline-block; padding: 10px 15px; background-color: var(--success-green);
+            color: white; text-decoration: none; border-radius: 4px;
+            font-family: var(--font-heading); font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
+        .preview-area a.download-btn:hover { background-color: #218838; /* Darker green */ }
+        
+        .alert-message { padding: 10px; margin-top: 10px; border-radius: 4px; font-size: 0.9em; }
+        .alert-success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .alert-error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px; /* Ensure space above footer */
+        }
+        footer p {
+             font-family: var(--font-body);
+             margin: 8px 0;
+             font-size: 0.9em;
+        }
+        footer a {
+            color: var(--secondary-accent);
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 1.5em; }
+            nav ul {
+                display: none; flex-direction: column; width: 100%;
+                background-color: var(--primary-accent); position: absolute;
+                top: 58px; left: 0; padding: 10px 0; box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+            }
+            nav ul.active { display: flex; }
+            nav ul li { margin: 10px 0; text-align: center; margin-left: 0;}
+            .menu-toggle { display: block; }
+            .page-title-bar h1 { font-size: 1.8em; }
+            .content-section h2 { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+   <header>
+        <div class="container">
+            <a href="/" class="logo">PicsArtHub.app</a>
+            <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/image-to-base-converter.html" class="active">Tools</a></li>
+                    <li><a href="/guides.html">Guides</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-title-bar">
+            <div class="container">
+                <h1>Image <=> Base64 & PDF to Image Converter</h1>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="tool-section-wrapper">
+                <div class="content-section converter-tool-section" id="image-to-base64-tool">
+                    <h2>Image/PDF to Base64</h2>
+                    <p>Upload an image file (PNG, JPG, GIF, WebP) or a PDF to convert it into a Base64 data URL string. The string can then be copied and used directly.</p>
+                    
+                    <input type="file" id="imageFile" accept="image/*,application/pdf">
+                    
+                    <div class="preview-area">
+                        <img id="imagePreview" src="#" alt="Image Preview" style="display: none;">
+                    </div>
+                    
+                    <label for="base64Output">Base64 Output:</label>
+                    <textarea id="base64Output" rows="6" placeholder="Base64 string will appear here..." readonly></textarea>
+                    <button id="copyBase64">Copy Base64</button>
+                    <div id="copyFeedback" class="alert-message" style="display: none;"></div>
+                </div>
+
+                <div class="content-section converter-tool-section" id="base64-to-image-tool">
+                    <h2>Base64 to Image (including PDF to Image)</h2>
+                    <p>Paste a valid Base64 data URL string (e.g., starting with <code>data:image/png;base64,...</code> or <code>data:application/pdf;base64,...</code>) to convert it back into an image. For PDF files, the first page will be displayed as an image.</p>
+                    
+                    <label for="base64Input">Base64 Input:</label>
+                    <textarea id="base64Input" rows="6" placeholder="Paste Base64 string here..."></textarea>
+                    <button id="convertToImage">Show Image</button>
+                    
+                    <div class="preview-area">
+                        <img id="imageFromBase64" src="#" alt="Image from Base64" style="display: none;">
+                        <a id="downloadLink" href="#" download="image.png" class="download-btn" style="display:none;">Download Image</a>
+                    </div>
+                    <div id="conversionFeedbackB64ToImg" class="alert-message" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 PicsArtHub.App. All Rights Reserved.</p>
+            <p><a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms-of-service.html">Terms of Service</a></p>
+            <p><small>Powerful and easy-to-use online image conversion tools.</small></p>
+        </div>
+    </footer>
+    
+    <script>
+        // --- NAVIGATION MENU SCRIPT ---
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav ul'); 
+        if (menuToggle && nav) {
+            menuToggle.addEventListener('click', () => {
+                nav.classList.toggle('active');
+                const isExpanded = nav.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isExpanded.toString());
+            });
+            document.querySelectorAll('nav ul li a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (nav.classList.contains('active')) {
+                         nav.classList.remove('active');
+                         menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+        }
+
+        // --- BASE64 CONVERTER SCRIPT ---
+        const imageFileInput = document.getElementById('imageFile');
+        const imagePreview = document.getElementById('imagePreview');
+        const base64OutputTextarea = document.getElementById('base64Output');
+        const copyBase64Button = document.getElementById('copyBase64');
+        const copyFeedbackDiv = document.getElementById('copyFeedback');
+
+        const base64InputTextarea = document.getElementById('base64Input');
+        const convertToImageButton = document.getElementById('convertToImage');
+        const imageFromBase64Preview = document.getElementById('imageFromBase64');
+        const downloadImageLink = document.getElementById('downloadLink');
+        const conversionFeedbackB64ToImgDiv = document.getElementById('conversionFeedbackB64ToImg');
+
+        function showFeedback(element, message, type = 'success', duration = 3000) {
+            element.textContent = message;
+            element.className = `alert-message alert-${type}`;
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, duration);
+        }
+        
+        if (imageFileInput) {
+            imageFileInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        base64OutputTextarea.value = e.target.result;
+                        if (file.type.startsWith('image/')) {
+                            imagePreview.src = e.target.result;
+                            imagePreview.style.display = 'block';
+                        } else {
+                            imagePreview.style.display = 'none';
+                            imagePreview.src = "#";
+                        }
+                        copyFeedbackDiv.style.display = 'none'; 
+                    };
+                    reader.onerror = () => {
+                        showFeedback(copyFeedbackDiv, 'Error reading file.', 'error');
+                        imagePreview.style.display = 'none';
+                        imagePreview.src = '#';
+                        base64OutputTextarea.value = '';
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    imagePreview.style.display = 'none';
+                    imagePreview.src = '#';
+                    base64OutputTextarea.value = '';
+                }
+            });
+        }
+
+        if (copyBase64Button) {
+            copyBase64Button.addEventListener('click', () => {
+                if (base64OutputTextarea.value) {
+                    navigator.clipboard.writeText(base64OutputTextarea.value)
+                        .then(() => {
+                            showFeedback(copyFeedbackDiv, 'Base64 copied to clipboard!', 'success');
+                        })
+                        .catch(err => {
+                            showFeedback(copyFeedbackDiv, 'Failed to copy. Please try manual copy.', 'error');
+                        });
+                } else {
+                    showFeedback(copyFeedbackDiv, 'Nothing to copy.', 'error');
+                }
+            });
+        }
+
+        if (convertToImageButton) {
+            convertToImageButton.addEventListener('click', async () => {
+                const b64String = base64InputTextarea.value.trim();
+                conversionFeedbackB64ToImgDiv.style.display = 'none';
+                imageFromBase64Preview.style.display = 'none';
+                imageFromBase64Preview.src = '#';
+                downloadImageLink.style.display = 'none';
+
+                if (!b64String) {
+                    showFeedback(conversionFeedbackB64ToImgDiv, 'Please paste a Base64 string first.', 'error');
+                    return;
+                }
+                
+                if (typeof pdfjsLib === 'undefined') {
+                     showFeedback(conversionFeedbackB64ToImgDiv, 'PDF library not loaded. Please check your internet connection and try again.', 'error');
+                     return;
+                }
+
+                if (b64String.startsWith('data:image')) {
+                    imageFromBase64Preview.src = b64String;
+                    imageFromBase64Preview.style.display = 'block';
+                    downloadImageLink.href = b64String;
+                    try {
+                        const mimeTypeMatch = b64String.match(/^data:(image\/[a-z+.-]+);base64,/i);
+                        let extension = 'png';
+                        if (mimeTypeMatch && mimeTypeMatch[1]) {
+                            const mimeType = mimeTypeMatch[1];
+                            if (mimeType === 'image/jpeg') extension = 'jpg';
+                            else if (mimeType === 'image/gif') extension = 'gif';
+                            else if (mimeType === 'image/webp') extension = 'webp';
+                            else if (mimeType === 'image/svg+xml') extension = 'svg';
+                            else { extension = mimeType.split('/')[1].split('+')[0]; }
+                        }
+                        downloadImageLink.download = `image_from_base64.${extension}`;
+                    } catch (e) {
+                        downloadImageLink.download = 'image_from_base64.png';
+                    }
+                    downloadImageLink.style.display = 'inline-block';
+                    showFeedback(conversionFeedbackB64ToImgDiv, 'Image displayed. You can now download it.', 'success');
+
+                } else if (b64String.startsWith('data:application/pdf;base64,')) {
+                    showFeedback(conversionFeedbackB64ToImgDiv, 'Processing PDF... This may take a moment.', 'success', 5000);
+                    try {
+                        const pdfData = atob(b64String.substring(b64String.indexOf(',') + 1));
+                        const loadingTask = pdfjsLib.getDocument({ data: pdfData });
+                        const pdfDoc = await loadingTask.promise;
+                        const page = await pdfDoc.getPage(1); 
+                        
+                        const viewport = page.getViewport({ scale: 1.5 });
+                        const canvas = document.createElement('canvas');
+                        const context = canvas.getContext('2d');
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+
+                        await page.render({ canvasContext: context, viewport: viewport }).promise;
+                        
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        imageFromBase64Preview.src = imageDataUrl;
+                        imageFromBase64Preview.style.display = 'block';
+                        downloadImageLink.href = imageDataUrl;
+                        downloadImageLink.download = 'pdf_page_1.png';
+                        downloadImageLink.style.display = 'inline-block';
+                        showFeedback(conversionFeedbackB64ToImgDiv, 'First page of PDF displayed as image.', 'success');
+
+                    } catch (error) {
+                        console.error("Error processing PDF Base64: ", error);
+                        showFeedback(conversionFeedbackB64ToImgDiv, 'Error processing PDF. Ensure it is a valid Base64 PDF string.', 'error');
+                    }
+                } else {
+                    showFeedback(conversionFeedbackB64ToImgDiv, 'Invalid Base64 string. It should start with "data:image/..." or "data:application/pdf;base64,...".', 'error');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
