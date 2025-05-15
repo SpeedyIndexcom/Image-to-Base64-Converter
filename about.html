@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Image-to-Base64 Converter</title>
+    <meta name="description" content="Learn more about the Image-to-Base64 Converter tool and its mission.">
+    <!-- Скопируйте сюда <link> на шрифты и ваши основные <style> из index.html или другого общего файла CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap">
+    <style>
+        /* Скопируйте сюда общие стили (body, .container, header, footer, nav, .logo, .menu-toggle и т.д.) */
+        /* ... (Ваши общие стили) ... */
+        
+        /* Стили специфичные для страницы "О нас" */
+        .about-content {
+            padding: 40px 20px;
+            text-align: left;
+            line-height: 1.8;
+        }
+        .about-content h1 {
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #D402BF; /* Используйте ваш --primary-accent */
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .about-content p {
+            margin-bottom: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Скопируйте сюда вашу шапку из index.html -->
+        <div class="container">
+            <a href="/" class="logo">PicsArtHub.app</a> <!-- Или как у вас называется -->
+            <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/image-to-base-converter.html">Tools</a></li>
+                    <li><a href="/guides/">Guides</a></li>
+                    <li><a href="/about.html" class="active">About</a></li> <!-- Сделать активной текущую страницу -->
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="about-content">
+                <h1>About Our Image to Base64 Converter</h1>
+                <p>Welcome to the Image to Base64 Converter, a part of the PicsArtHub.app suite of tools! Our mission is to provide simple, fast, and reliable online utilities for developers, designers, and anyone working with digital images.</p>
+                <p>This specific tool allows you to effortlessly convert your images (PNG, JPG, GIF, WebP) into Base64 encoded strings. Base64 encoding is useful for embedding images directly into HTML (as Data URLs), CSS, or for transmitting image data in JSON or XML formats without data corruption.</p>
+                <p>You can also perform the reverse operation: convert a Base64 string back into an image, which you can then preview and download. We've recently added functionality to convert the first page of a Base64 encoded PDF into a viewable PNG image.</p>
+                <p>We believe in making web development and content creation more accessible. Our tools are designed to be intuitive and require no software installation, empowering you to perform common tasks directly in your browser.</p>
+                <p>Thank you for using our service! We are continuously working on improving our existing tools and adding new ones to PicsArtHub.app.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Скопируйте сюда ваш подвал из index.html -->
+        <div class="container">
+            <p>© 2024 PicsArtHub.App. All Rights Reserved.</p>
+            <p><a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms-of-service.html">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Скопируйте сюда ваш JS для мобильного меню
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav ul'); 
+        // ... (остальной JS)
+    </script>
+</body>
+</html>
