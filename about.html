@@ -3,75 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Image-to-Base64 Converter</title>
-    <meta name="description" content="Learn more about the Image-to-Base64 Converter tool and its mission.">
-    <!-- Скопируйте сюда <link> на шрифты и ваши основные <style> из index.html или другого общего файла CSS -->
+    <title>About Us - PicsArtHub.app</title>
+    <meta name="description" content="Learn more about PicsArtHub.app, our mission to provide high-quality online image utilities, and the team behind our tools.">
+    <link rel="canonical" href="https://image-to-base64-converter-eight.vercel.app/about/"> <!-- Adjust if you place it in a subfolder -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap">
+    
     <style>
-        /* Скопируйте сюда общие стили (body, .container, header, footer, nav, .logo, .menu-toggle и т.д.) */
-        /* ... (Ваши общие стили) ... */
-        
-        /* Стили специфичные для страницы "О нас" */
-        .about-content {
-            padding: 40px 20px;
-            text-align: left;
-            line-height: 1.8;
+        :root {
+            --primary-accent: #D402BF;
+            --secondary-accent: #c64ad8;
+            --tertiary-accent: #973aa8;
+            --text-dark: #333;
+            --text-light: #fff;
+            --bg-light: #f8f9fa;
+            --bg-medium: #e9ecef;
+            --bg-dark: #343a40; 
+            --border-light: #e0e0e0;
+            --font-heading: 'Roboto', Arial, sans-serif;
+            --font-body: 'Open Sans', Verdana, sans-serif;
+            --shadow-soft: 0 4px 12px rgba(0,0,0,0.08);
         }
-        .about-content h1 {
-            font-family: 'Roboto', Arial, sans-serif;
-            color: #D402BF; /* Используйте ваш --primary-accent */
-            margin-bottom: 20px;
+
+        body {
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            font-size: 16px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* --- Header (Consistent with other pages) --- */
+        header {
+            background-color: var(--primary-accent);
+            color: var(--text-light);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-soft);
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0; padding-bottom: 0;
+        }
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
+        nav ul li { margin-left: 25px; }
+        nav ul li a {
+            font-family: var(--font-heading); color: var(--text-light); text-decoration: none;
+            font-weight: 700; padding: 10px 15px; border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        nav ul li a:hover, nav ul li a.active { background-color: rgba(255,255,255,0.2); }
+        .menu-toggle { display: none; font-size: 1.8em; color: var(--text-light); background: none; border: none; cursor: pointer; }
+
+        /* --- Main Content Area for About Page --- */
+        .page-header {
+            background-color: var(--bg-medium);
+            padding: 40px 20px;
             text-align: center;
+            border-bottom: 3px solid var(--secondary-accent);
+        }
+        .page-header h1 {
+            font-family: var(--font-heading);
+            font-size: 2.5em;
+            color: var(--primary-accent);
+            margin: 0;
+        }
+
+        .about-section {
+            padding: 40px 0;
+        }
+        .about-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-soft);
+            max-width: 800px; /* Limit content width for readability */
+            margin: 0 auto; /* Center content block */
+        }
+        .about-content h2 {
+            font-family: var(--font-heading);
+            color: var(--tertiary-accent);
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 20px;
         }
         .about-content p {
+            font-size: 1.05em;
             margin-bottom: 1.5em;
+            line-height: 1.8;
+        }
+        .about-content strong {
+            color: var(--primary-accent);
+        }
+        .team-section { /* Optional: if you want to add a team section */
+            margin-top: 30px;
+        }
+        .team-member {
+            margin-bottom: 20px;
+        }
+        .team-member h3 {
+            font-family: var(--font-heading);
+            color: var(--text-dark);
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        /* --- Footer (Consistent with other pages) --- */
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 20px; /* Add some space if content is short */
+        }
+        footer p {
+             font-family: var(--font-body);
+             margin: 8px 0;
+             font-size: 0.9em;
+        }
+        footer a {
+            color: var(--secondary-accent);
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .logo { font-size: 1.5em; }
+            nav ul {
+                display: none; flex-direction: column; width: 100%;
+                background-color: var(--primary-accent); position: absolute;
+                top: 58px; /* Adjust if header height changes */
+                left: 0; padding: 10px 0; box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+            }
+            nav ul.active { display: flex; }
+            nav ul li { margin: 10px 0; text-align: center; margin-left: 0;}
+            .menu-toggle { display: block; }
+
+            .page-header h1 { font-size: 2em; }
+            .about-content h2 { font-size: 1.5em; }
+            .about-content p { font-size: 1em; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <!-- Скопируйте сюда вашу шапку из index.html -->
+   <header>
         <div class="container">
-            <a href="/" class="logo">PicsArtHub.app</a> <!-- Или как у вас называется -->
+            <a href="/" class="logo">PicsArtHub.app</a>
             <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/image-to-base-converter.html">Tools</a></li>
-                    <li><a href="/guides/">Guides</a></li>
-                    <li><a href="/about.html" class="active">About</a></li> <!-- Сделать активной текущую страницу -->
-                    <li><a href="/contact.html">Contact</a></li>
+                    <li><a href="/image-to-base-converter.html">Tools</a></li> <!-- Or your specific tool page URL -->
+                    <li><a href="/guides/">Guides</a></li> <!-- Placeholder -->
+                    <li><a href="/about.html" class="active">About</a></li> <!-- Current page -->
+                    <li><a href="/contact.html">Contact</a></li> <!-- Placeholder -->
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <div class="container">
-            <section class="about-content">
-                <h1>About Our Image to Base64 Converter</h1>
-                <p>Welcome to the Image to Base64 Converter, a part of the PicsArtHub.app suite of tools! Our mission is to provide simple, fast, and reliable online utilities for developers, designers, and anyone working with digital images.</p>
-                <p>This specific tool allows you to effortlessly convert your images (PNG, JPG, GIF, WebP) into Base64 encoded strings. Base64 encoding is useful for embedding images directly into HTML (as Data URLs), CSS, or for transmitting image data in JSON or XML formats without data corruption.</p>
-                <p>You can also perform the reverse operation: convert a Base64 string back into an image, which you can then preview and download. We've recently added functionality to convert the first page of a Base64 encoded PDF into a viewable PNG image.</p>
-                <p>We believe in making web development and content creation more accessible. Our tools are designed to be intuitive and require no software installation, empowering you to perform common tasks directly in your browser.</p>
-                <p>Thank you for using our service! We are continuously working on improving our existing tools and adding new ones to PicsArtHub.app.</p>
-            </section>
-        </div>
+        <section class="page-header">
+            <div class="container">
+                <h1>About PicsArtHub.app</h1>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <h2>Our Mission</h2>
+                    <p>At <strong>PicsArtHub.app</strong>, our mission is to empower creators, developers, and digital enthusiasts by providing a suite of accessible, powerful, and user-friendly online image utilities. We believe that complex image processing tasks shouldn't require expensive software or steep learning curves. Our goal is to simplify your workflow and help you achieve professional results with ease.</p>
+                    
+                    <h2>What We Do</h2>
+                    <p>We specialize in developing online tools that address common and niche needs in image manipulation and data conversion. From our popular <strong>Image to Base64 Converter</strong> (which also handles PDF to image conversion for Base64 encoded data) to upcoming utilities for optimization, resizing, and format conversion, we are dedicated to expanding our offerings based on user feedback and technological advancements.</p>
+                    <p>Our tools are designed with several key principles in mind:</p>
+                    <ul>
+                        <li><strong>Simplicity:</strong> Intuitive interfaces that anyone can use.</li>
+                        <li><strong>Speed:</strong> Fast processing to save you valuable time.</li>
+                        <li><strong>Accessibility:</strong> Free to use, directly in your web browser, with no downloads required.</li>
+                        <li><strong>Reliability:</strong> Accurate and dependable results every time.</li>
+                    </ul>
+
+                    <h2>Why Choose PicsArtHub.app?</h2>
+                    <p>In a digital world saturated with tools, PicsArtHub.app stands out by focusing on a curated collection of utilities that are genuinely useful and meticulously crafted. We understand the challenges faced by those who work with digital images daily, whether it's preparing assets for a website, encoding data for an application, or simply needing a quick conversion.</p>
+                    <p>We are passionate about web technologies and dedicated to providing a seamless experience. Your privacy is also important to us; our client-side tools ensure that your images are processed in your browser whenever possible, without being uploaded to our servers for many core functions.</p>
+
+                    <h2>Looking Ahead</h2>
+                    <p>The journey for PicsArtHub.app has just begun. We are constantly exploring new ideas and improvements. We envision a comprehensive hub where you can find not only tools but also insightful guides, tutorials, and resources to enhance your understanding and skills in digital image management.</p>
+                    <p>Thank you for visiting and using our services. We value your support and welcome any feedback you might have to help us grow and serve you better!</p>
+
+                    <!-- Optional: Team Section
+                    <div class="team-section">
+                        <h2>Our Team (Placeholder)</h2>
+                        <div class="team-member">
+                            <h3>[Founder/Lead Developer Name]</h3>
+                            <p>Passionate about web development and creating useful tools for the community.</p>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <!-- Скопируйте сюда ваш подвал из index.html -->
         <div class="container">
             <p>© 2024 PicsArtHub.App. All Rights Reserved.</p>
             <p><a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms-of-service.html">Terms of Service</a></p>
+            <p><small>Your trusted partner for online image utilities.</small></p>
         </div>
     </footer>
-
+    
     <script>
-        // Скопируйте сюда ваш JS для мобильного меню
+        // --- NAVIGATION MENU SCRIPT ---
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav ul'); 
-        // ... (остальной JS)
+        if (menuToggle && nav) {
+            menuToggle.addEventListener('click', () => {
+                nav.classList.toggle('active');
+                const isExpanded = nav.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isExpanded.toString());
+            });
+            // Optional: Close menu when a link is clicked if it's a single-page app or for better mobile UX
+            document.querySelectorAll('nav ul li a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (nav.classList.contains('active')) {
+                        // Check if it's not an anchor link on the same page that should keep menu open
+                        // For a simple multi-page site, always closing is usually fine.
+                        nav.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+        }
     </script>
+
 </body>
 </html>
