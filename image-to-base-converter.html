@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +32,7 @@
         "price": "0",
         "priceCurrency": "USD"
       },
-      "keywords": "image to base64, base64 to image, convert image to base64, convert base64 to image, image to base64 online, base64 to image online, image to base64 converter, base64 to image converter, encode image to base64, decode base64 to image, base64 string to image, base64 pdf to image, png to base64",
+      "keywords": "image to base64, base64 to image, convert image to base64, convert base64 to image, image to base64 online, base64 to image online, image to base64 converter, base64 to image converter, encode image to base64, decode base64 to image, base64 string to image, base64 pdf to image, png to base64, jpg to base64, webp to base64, pdf to image from base64, free online base64 converter, image data url generator, easy base64 image encoding, quick base64 image conversion",
       "browserRequirements": "Requires JavaScript and a modern web browser."
     }
     </script>
@@ -103,10 +104,9 @@
         nav ul li a:hover, nav ul li a.active { background-color: rgba(255,255,255,0.2); }
         .menu-toggle { display: none; font-size: 1.8em; color: var(--text-light); background: none; border: none; cursor: pointer; }
 
-        /* Page Specific Styles for Converter */
-        .page-title-bar { /* Similar to page-header from about.html */
+        .page-title-bar { 
             background-color: var(--bg-medium);
-            padding: 30px 20px; /* Slightly less padding */
+            padding: 30px 20px; 
             text-align: center;
             border-bottom: 3px solid var(--secondary-accent);
             margin-bottom: 30px;
@@ -117,15 +117,35 @@
             color: var(--primary-accent);
             margin: 0;
         }
+        
+        .info-text-block { 
+            background-color: #fff; padding: 25px; margin-bottom: 30px;
+            border-radius: 8px; box-shadow: var(--shadow-soft);
+        }
+        .info-text-block h2 {
+            font-family: var(--font-heading); color: var(--primary-accent); font-size: 1.7em;
+            margin-top: 0; margin-bottom: 20px;
+        }
+         .info-text-block p {
+             font-family: var(--font-body); margin-bottom: 1em;
+        }
+         .info-text-block ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding-left: 0;
+         }
+         .info-text-block li {
+            margin-bottom: 0.5em;
+         }
 
-        .tool-section-wrapper { /* To wrap the two converter sections */
+        .tool-section-wrapper { 
              display: flex;
              flex-direction: column;
-             gap: 30px; /* Space between converter sections */
+             gap: 30px; 
         }
         
-        .content-section { /* Reusing from previous example, good for tool sections */
-            background-color: #fff; padding: 25px; margin-bottom: 0; /* Removed bottom margin as wrapper handles gap */
+        .content-section { 
+            background-color: #fff; padding: 25px; margin-bottom: 0; 
             border-radius: 8px; box-shadow: var(--shadow-soft);
         }
         .content-section h2 {
@@ -171,7 +191,7 @@
             font-family: var(--font-heading); font-size: 0.9em;
             transition: background-color 0.3s ease;
         }
-        .preview-area a.download-btn:hover { background-color: #218838; /* Darker green */ }
+        .preview-area a.download-btn:hover { background-color: #218838; }
         
         .alert-message { padding: 10px; margin-top: 10px; border-radius: 4px; font-size: 0.9em; }
         .alert-success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
@@ -183,7 +203,7 @@
             color: var(--text-light);
             text-align: center;
             padding: 30px 0;
-            margin-top: 40px; /* Ensure space above footer */
+            margin-top: 40px; 
         }
         footer p {
              font-family: var(--font-body);
@@ -209,7 +229,7 @@
             nav ul li { margin: 10px 0; text-align: center; margin-left: 0;}
             .menu-toggle { display: block; }
             .page-title-bar h1 { font-size: 1.8em; }
-            .content-section h2 { font-size: 1.5em; }
+            .content-section h2, .info-text-block h2 { font-size: 1.5em; }
         }
     </style>
 </head>
@@ -220,8 +240,8 @@
             <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
             <nav>
                 <ul>
-                 <li><a href="/">Home</a></li>
-                    <li><a href="/image-to-base-converter.html">Tools</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/image-to-base-converter.html" class="active">Tools</a></li>
                     <li><a href="/image-indexing.html">Image Indexing</a></li>
                     <li><a href="/guides.html">Guides</a></li>
                     <li><a href="/about.html">About</a></li>
@@ -237,6 +257,44 @@
                 <h1>Image <=> Base64 & PDF to Image Converter</h1>
             </div>
         </section>
+
+        <div class="container">
+            <div class="info-text-block">
+                <h2>What is a Base64 Converter for Images and PDF?</h2>
+                <p>Welcome to PicsArtHub.app, your reliable <strong>Online Base64 Image Tool</strong>! Our service is a versatile <strong>Image to Base64 Converter</strong> and <strong>Base64 to Image Converter</strong>, which also includes a unique <strong>PDF to Image from Base64</strong> feature. This means you can easily <strong>encode image to Base64 string</strong> or, conversely, <strong>decode Base64 string to image online</strong>.</p>
+                <p>We support popular image formats such as PNG, JPG, GIF, and WebP, allowing you to use our <strong>Online PNG to Base64 tool</strong>, <strong>JPG to Base64 online converter</strong>, or perform <strong>WebP to Base64 conversion</strong>. Furthermore, if you have a PDF file encoded in Base64, our tool can <strong>convert Base64 PDF to PNG</strong>, displaying the first page of your document as an image. Best of all, it's a completely <strong>Free Online Base64 Converter</strong>!</p>
+            </div>
+
+            <div class="info-text-block">
+                <h2>When is this service needed?</h2>
+                <p>Understanding <strong>how to convert image to Base64</strong> or how to <strong>see image from Base64 code</strong> can be useful in many situations. Here are a few common use cases:</p>
+                <ul>
+                    <li><strong>Web Development:</strong> For embedding images directly into HTML (as an <strong>Image data URL generator</strong>) or CSS to reduce HTTP requests and speed up page loading.</li>
+                    <li><strong>Data Transmission:</strong> When images need to be transmitted in a text format, such as in JSON or XML API responses.</li>
+                    <li><strong>Data Storage:</strong> In some databases or configuration files, it might be more convenient to store small images as Base64 strings.</li>
+                    <li><strong>Email:</strong> For embedding images directly into the body of HTML emails so they display without needing to be downloaded from an external server.</li>
+                    <li><strong>Development and Debugging:</strong> To quickly <strong>convert Base64 data to viewable image</strong> and verify data integrity.</li>
+                    <li><strong>Working with PDFs:</strong> When you need a quick visual representation of the first page of a PDF document provided in Base64, without downloading and opening the entire file. Our tool allows you to <strong>convert Base64 PDF to PNG</strong> for this purpose.</li>
+                </ul>
+            </div>
+
+            <div class="info-text-block">
+                <h2>What makes this particular service convenient?</h2>
+                <p>Our <strong>Online utility for Base64 images</strong> at PicsArtHub.app is designed with your convenience and efficiency in mind. Here are the key advantages:</p>
+                <ul>
+                    <li><strong>Simplicity and Intuition:</strong> You don't need to be a technical expert. The interface is straightforward and easy to understand, making the process an <strong>easy Base64 image encoding tool</strong> accessible to everyone.</li>
+                    <li><strong>Speed:</strong> We offer <strong>quick Base64 image conversion</strong>. Upload your file or paste the string, and the result will be ready in seconds.</li>
+                    <li><strong>Versatility:</strong> Support for two-way conversion (<strong>Image to Base64 Converter</strong> and <strong>Base64 to Image Converter</strong>) for various formats (PNG, JPG, GIF, WebP) and a special feature for <strong>PDF to Image from Base64</strong>.</li>
+                    <li><strong>Visual Control:</strong> You can immediately see a preview of the uploaded image or the image generated from the Base64 string. This is particularly useful to <strong>see image from Base64 code</strong> before further use.</li>
+                    <li><strong>Copy and Download:</strong> Easily copy the resulting Base64 string to your clipboard or download the restored image.</li>
+                    <li><strong>No Software Installation:</strong> This is a completely <strong>Online Base64 Image Tool</strong>, accessible from any browser on any device. No downloads or installations are required.</li>
+                    <li><strong>PDF Handling:</strong> The unique ability to <strong>convert Base64 PDF to PNG</strong> (first page) sets our service apart from many others.</li>
+                    <li><strong>Free of Charge:</strong> Use all features of our <strong>Free Online Base64 Converter</strong> without any limitations.</li>
+                </ul>
+                <p>Use our <strong>tool to convert image to Base64</strong> and back for all your needs, whether you're working with a <strong>Base64 string to image online</strong> or need to <strong>convert images to Base64 Data URL</strong>.</p>
+            </div>
+        </div>
+
 
         <div class="container">
             <div class="tool-section-wrapper">
@@ -334,9 +392,9 @@
                         if (file.type.startsWith('image/')) {
                             imagePreview.src = e.target.result;
                             imagePreview.style.display = 'block';
-                        } else {
+                        } else { 
                             imagePreview.style.display = 'none';
-                            imagePreview.src = "#";
+                            imagePreview.src = "#"; 
                         }
                         copyFeedbackDiv.style.display = 'none'; 
                     };
@@ -402,7 +460,7 @@
                             else if (mimeType === 'image/gif') extension = 'gif';
                             else if (mimeType === 'image/webp') extension = 'webp';
                             else if (mimeType === 'image/svg+xml') extension = 'svg';
-                            else { extension = mimeType.split('/')[1].split('+')[0]; }
+                            else { extension = mimeType.split('/')[1].split('+')[0].replace('vnd.',''); }
                         }
                         downloadImageLink.download = `image_from_base64.${extension}`;
                     } catch (e) {
