@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image <=> Base64 & PDF to Image Converter - PicsArtHub.app</title>
-    <meta name="description" content="Free online tool to convert images (PNG, JPG, GIF, WebP) to Base64 strings and vice-versa. Also supports converting Base64 encoded PDF files to an image of the first page.">
+    <meta name="description" content="Free online tool to convert a wide range of images (PNG, JPG, GIF, WebP, SVG, ICO, BMP, TIFF) and PDFs to Base64 strings and vice-versa. Decode Base64 to view images or the first page of a PDF.">
     <link rel="canonical" href="https://image-to-base64-converter-eight.vercel.app/image-to-base-converter.html">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap">
     
@@ -22,7 +22,7 @@
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Image <=> Base64 & PDF to Image Converter",
-      "description": "A free online utility to perform bi-directional conversion between images (PNG, JPG, GIF, WebP) and Base64 encoded strings. Additionally, it can convert the first page of a Base64 encoded PDF document into a PNG image.",
+      "description": "A free online utility for bi-directional conversion between a wide range of image formats (PNG, JPG, GIF, WebP, SVG, ICO, BMP, TIFF) and Base64 encoded strings. It can also convert the first page of a Base64 encoded PDF document into a PNG image.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Web Browser",
       "url": "https://image-to-base64-converter-eight.vercel.app/image-to-base-converter.html",
@@ -31,7 +31,7 @@
         "price": "0",
         "priceCurrency": "USD"
       },
-      "keywords": "image to base64, base64 to image, convert image to base64, convert base64 to image, image to base64 online, base64 to image online, image to base64 converter, base64 to image converter, encode image to base64, decode base64 to image, base64 string to image, base64 pdf to image, png to base64, jpg to base64, webp to base64, pdf to image from base64, free online base64 converter, image data url generator, easy base64 image encoding, quick base64 image conversion",
+      "keywords": "image to base64, base64 to image, convert image to base64, convert base64 to image, image to base64 online, base64 to image online, image to base64 converter, base64 to image converter, encode image to base64, decode base64 to image, base64 string to image, base64 pdf to image, png to base64, jpg to base64, webp to base64, svg to base64, ico to base64, bmp to base64, tiff to base64, pdf to image from base64, free online base64 converter, image data url generator, easy base64 image encoding, quick base64 image conversion",
       "browserRequirements": "Requires JavaScript and a modern web browser."
     }
     </script>
@@ -50,8 +50,8 @@
             --font-heading: 'Roboto', Arial, sans-serif;
             --font-body: 'Open Sans', Verdana, sans-serif;
             --shadow-soft: 0 4px 12px rgba(0,0,0,0.08);
-            --success-green: #28a745; /* Added for success messages */
-            --error-red: #dc3545; /* Added for error messages */
+            --success-green: #28a745; 
+            --error-red: #dc3545; 
         }
 
         body {
@@ -136,7 +136,7 @@
          .info-text-block li {
             margin-bottom: 0.5em;
          }
-         .info-text-block a { /* Style for links within info blocks */
+         .info-text-block a { 
             color: var(--secondary-accent);
             text-decoration: underline;
          }
@@ -262,7 +262,7 @@
     <main>
         <section class="page-title-bar">
             <div class="container">
-                <h1>Image <=> Base64 & PDF to Image Converter</h1>
+                <h1>Universal Image <=> Base64 & PDF to Image Converter</h1>
             </div>
         </section>
 
@@ -270,19 +270,23 @@
             <div class="info-text-block">
                 <h2>What is a Base64 Converter for Images and PDF?</h2>
                 <p>Welcome to <a href="https://picsarthub.app/image-to-base-converter/">PicsArtHub.app</a>! Our service is a versatile online tool for base64 conversions. It functions both as an image to base64 converter and a base64 to image converter, and also includes a unique feature to handle pdf to image from base64 data. This means you can easily encode an image to a base64 string or, conversely, decode a base64 string to see an image online.</p>
-                <p>We support various common file types. For images, you can perform online png to base64 or jpg to base64 conversions, as well as webp to base64 conversion. If you have a PDF file encoded in Base64, our utility can convert the base64 pdf to a png image, displaying the first page. This is a completely free online base64 converter.</p>
+                <p>We support a wide array of common file types. For images, you can perform online conversions for formats like PNG (png to base64), JPEG (jpg to base64), GIF, WebP (webp to base64), SVG (svg to base64), ICO, BMP, and TIFF to Base64. If you have a PDF file encoded in Base64, our utility can convert the base64 pdf to a png image, displaying the first page. This is a completely free online base64 converter.</p>
             </div>
 
             <div class="info-text-block">
                 <h2>Supported Image Formats for Encoding to Base64</h2>
-                <p>Our online utility allows you to convert various common image file types into Base64 encoded strings. The primary image formats supported for this conversion are:</p>
+                <p>Our online utility allows you to convert a comprehensive range of common image file types into Base64 encoded strings. The primary image formats supported for this conversion include:</p>
                 <ul>
                     <li><strong>PNG</strong> (Portable Network Graphics)</li>
                     <li><strong>JPG / JPEG</strong> (Joint Photographic Experts Group)</li>
                     <li><strong>GIF</strong> (Graphics Interchange Format)</li>
                     <li><strong>WebP</strong></li>
+                    <li><strong>SVG</strong> (Scalable Vector Graphics)</li>
+                    <li><strong>ICO</strong> (Icon file)</li>
+                    <li><strong>BMP</strong> (Bitmap image file)</li>
+                    <li><strong>TIFF</strong> (Tagged Image File Format)</li>
                 </ul>
-                <p>Simply upload an image in one of these formats, and our tool will generate the corresponding Base64 data URL. While PDF files can also be converted to Base64 (and their first page to an image), this section focuses on the direct image-to-Base64 encoding capabilities.</p>
+                <p>Simply upload an image in one of these formats, and our tool will generate the corresponding Base64 data URL. PDF files can also be converted to Base64 (and their first page viewed as an image), adding to the tool's versatility.</p>
             </div>
 
             <div class="info-text-block">
@@ -304,9 +308,9 @@
                 <ul>
                     <li><strong>Simplicity and Intuition:</strong> You don't need to be a technical expert. The interface is straightforward, making the process an easy base64 image encoding tool accessible to everyone.</li>
                     <li><strong>Speed:</strong> We offer quick base64 image conversion. Upload your file or paste the string, and the result will be ready in seconds.</li>
-                    <li><strong>Versatility:</strong> Support for two-way conversion (image to base64 and base64 to image) for various formats (PNG, JPG, GIF, WebP) and a special feature for pdf to image from base64.</li>
-                    <li><strong>Visual Control:</strong> You can immediately see a preview of the uploaded image or the image generated from the base64 string. This is particularly useful to see an image from base64 code before further use.</li>
-                    <li><strong>Copy and Download:</strong> Easily copy the resulting Base64 string to your clipboard or download the restored image.</li>
+                    <li><strong>Versatility:</strong> Support for two-way conversion (image to base64 and base64 to image) for a wide range of image formats (PNG, JPG, GIF, WebP, SVG, ICO, BMP, TIFF) and a special feature for pdf to image from base64.</li>
+                    <li><strong>Visual Control:</strong> You can immediately see a preview of the uploaded image (for browser-supported types) or the image generated from the base64 string. This is particularly useful to see an image from base64 code before further use.</li>
+                    <li><strong>Copy and Download:</strong> Easily copy the resulting Base64 string to your clipboard or download the restored image with an appropriate file extension.</li>
                     <li><strong>No Software Installation:</strong> This is a completely online base64 image tool, accessible from any browser on any device. No downloads or installations are required.</li>
                     <li><strong>PDF Handling:</strong> The unique ability to convert a base64 pdf to png (first page) sets our service apart from many others.</li>
                     <li><strong>Free of Charge:</strong> Use all features of our free online base64 converter without any limitations.</li>
@@ -320,9 +324,9 @@
             <div class="tool-section-wrapper">
                 <div class="content-section converter-tool-section" id="image-to-base64-tool">
                     <h2>Image/PDF to Base64</h2>
-                    <p>Upload an image file (PNG, JPG, GIF, WebP) or a PDF to convert it into a Base64 data URL string. The string can then be copied and used directly.</p>
+                    <p>Upload an image file (e.g., PNG, JPG, GIF, WebP, SVG, ICO, BMP, TIFF) or a PDF to convert it into a Base64 data URL string. The string can then be copied and used directly.</p>
                     
-                    <input type="file" id="imageFile" accept="image/*,application/pdf">
+                    <input type="file" id="imageFile" accept="image/png, image/jpeg, image/gif, image/webp, image/svg+xml, image/x-icon, image/vnd.microsoft.icon, image/bmp, image/tiff, application/pdf">
                     
                     <div class="preview-area">
                         <img id="imagePreview" src="#" alt="Image Preview" style="display: none;">
@@ -409,14 +413,23 @@
                     const reader = new FileReader();
                     reader.onload = (e) => {
                         base64OutputTextarea.value = e.target.result;
-                        if (file.type.startsWith('image/')) {
+                        // Attempt to show preview for known image types browser can render
+                        if (file.type.startsWith('image/') && 
+                            (file.type === 'image/png' || file.type === 'image/jpeg' || file.type === 'image/gif' || file.type === 'image/webp' || file.type === 'image/svg+xml' || file.type === 'image/bmp' || file.type === 'image/x-icon' || file.type === 'image/vnd.microsoft.icon')) {
                             imagePreview.src = e.target.result;
                             imagePreview.style.display = 'block';
+                        } else if (file.type.startsWith('image/')) { // For other image types like TIFF, don't try to preview directly if problematic
+                            imagePreview.src = '#'; // Clear previous preview
+                            imagePreview.style.display = 'none';
+                            // Optionally, show a message that preview might not be available for this format
+                            showFeedback(copyFeedbackDiv, 'Base64 generated. Preview may not be available for this image format.', 'success', 4000);
                         } else { 
                             imagePreview.style.display = 'none';
                             imagePreview.src = "#"; 
                         }
-                        copyFeedbackDiv.style.display = 'none'; 
+                        if (!file.type.startsWith('image/')) { // Clear feedback if it's not an image we just showed feedback for
+                           copyFeedbackDiv.style.display = 'none'; 
+                        }
                     };
                     reader.onerror = () => {
                         showFeedback(copyFeedbackDiv, 'Error reading file.', 'error');
@@ -462,34 +475,47 @@
                     return;
                 }
                 
-                if (typeof pdfjsLib === 'undefined') {
+                if (typeof pdfjsLib === 'undefined' && b64String.startsWith('data:application/pdf;base64,')) {
                      showFeedback(conversionFeedbackB64ToImgDiv, 'PDF library not loaded. Please check your internet connection and try again.', 'error');
                      return;
                 }
 
                 if (b64String.startsWith('data:image')) {
-                    imageFromBase64Preview.src = b64String;
+                    imageFromBase64Preview.src = b64String; // Browser will try to render it
                     imageFromBase64Preview.style.display = 'block';
                     downloadImageLink.href = b64String;
                     try {
-                        const mimeTypeMatch = b64String.match(/^data:(image\/[a-z+.-]+);base64,/i);
-                        let extension = 'png';
+                        const mimeTypeMatch = b64String.match(/^data:(image\/[a-z+.\-]+);base64,/i);
+                        let extension = 'png'; // Default
                         if (mimeTypeMatch && mimeTypeMatch[1]) {
-                            const mimeType = mimeTypeMatch[1];
+                            const mimeType = mimeTypeMatch[1].toLowerCase();
                             if (mimeType === 'image/jpeg') extension = 'jpg';
                             else if (mimeType === 'image/gif') extension = 'gif';
                             else if (mimeType === 'image/webp') extension = 'webp';
                             else if (mimeType === 'image/svg+xml') extension = 'svg';
-                            else { extension = mimeType.split('/')[1].split('+')[0].replace('vnd.',''); }
+                            else if (mimeType === 'image/x-icon' || mimeType === 'image/vnd.microsoft.icon') extension = 'ico';
+                            else if (mimeType === 'image/bmp') extension = 'bmp';
+                            else if (mimeType === 'image/tiff') extension = 'tiff';
+                            else { 
+                                let extPart = mimeType.split('/')[1];
+                                if (extPart) {
+                                   extension = extPart.split('+')[0].replace('vnd.','');
+                                }
+                            }
                         }
                         downloadImageLink.download = `image_from_base64.${extension}`;
                     } catch (e) {
-                        downloadImageLink.download = 'image_from_base64.png';
+                        console.error("Error determining extension:", e);
+                        downloadImageLink.download = 'image_from_base64.png'; // Fallback
                     }
                     downloadImageLink.style.display = 'inline-block';
                     showFeedback(conversionFeedbackB64ToImgDiv, 'Image displayed. You can now download it.', 'success');
 
                 } else if (b64String.startsWith('data:application/pdf;base64,')) {
+                    if (typeof pdfjsLib === 'undefined') { // Double check, though already checked above
+                        showFeedback(conversionFeedbackB64ToImgDiv, 'PDF library not loaded. Cannot process PDF.', 'error');
+                        return;
+                    }
                     showFeedback(conversionFeedbackB64ToImgDiv, 'Processing PDF... This may take a moment.', 'success', 5000);
                     try {
                         const pdfData = atob(b64String.substring(b64String.indexOf(',') + 1));
